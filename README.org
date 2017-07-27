@@ -1,2 +1,2 @@
-# dotspacemacs
+* .spacemacs
 My spacemacs configuration
