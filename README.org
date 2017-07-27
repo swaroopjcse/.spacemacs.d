@@ -1,2 +1,6 @@
 * .spacemacs
 My spacemacs configuration
+** TODO Things I would like to do in my configuration [0/2]
+   - [ ] helm-bibtex
+   - [ ] org-ref
+
