@@ -1,6 +1,9 @@
 * .spacemacs
 My spacemacs configuration
-** TODO Things I would like to do in my configuration [0/2]
+** TODO Things I would like to do in my configuration [0/5]
+   - [ ] key bindings
    - [ ] helm-bibtex
    - [ ] org-ref
+   - [ ] python
+   - [ ] flycheck configuration
 
