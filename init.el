@@ -325,7 +325,22 @@ you should place your code here."
         org-ref-pdf-directory "~/Documents/Research/bib/"
         org-ref-bibliography-notes "~/Documents/Research/bib/notes.org")
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  (setq mu4e-maildir "~/.mail"
+        mu4e-trash-folder "/Trash"
+        mu4e-refile-folder "/Archive"
+        mu4e-get-mail-command "mbsync -a --config ~/.spacemacs.d/mbsyncrc"
+        mu4e-update-interval nil
+        mu4e-compose-signature-auto-include nil
+        mu4e-view-show-images t
+        mu4e-view-show-addresses t)
+
+;;; Mail directory shortcuts
+  (setq mu4e-maildir-shortcuts
+        '(("/gmail/INBOX" . ?g)
+          ("/college/INBOX" . ?c)))
   )
+;;; Needed to avoid duplicate UID errors
+  (setq mu4e-change-filenames-when-moving t)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
