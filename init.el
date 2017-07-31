@@ -342,6 +342,17 @@ you should place your code here."
 ;;; Needed to avoid duplicate UID errors
   (setq mu4e-change-filenames-when-moving t)
 
+;;; msmtp to send emails
+(setq message-send-mail-function 'message-send-mail-with-sendmail)
+(setq sendmail-program "~/.brew/homebrew/bin/msmtp --file=~/.spacemacs.d/msmtprc")
+
+;;; User info
+(setq user-full-name "Swaroop Joshi"
+      user-mail-address "swaroopj.cse@gmail.com")
+
+;;; Set the spell check program
+  (setq ispell-program-name "~/.brew/homebrew/bin/aspell")
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
