@@ -2,7 +2,7 @@ IMAPAccount gmail
 # Address to connect to
 Host imap.gmail.com
 User swaroopjcse@gmail.com
-PassCmd "pass show Email/swaroopjcse@gmail"
+PassCmd "/Users/swaroop/.brew/homebrew/bin/gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.spacemacs.d/swaroopjcse@gmail.pass.asc"
 AuthMechs LOGIN
 SSLType IMAPS
 # SSLVersions SSLv3
@@ -86,7 +86,7 @@ Channel gmail-starred
 IMAPAccount osu
 Host email.osu.edu
 User joshi.127@osu.edu
-PassCmd "pass show Email/osu | head -1"
+PassCmd "/Users/swaroop/.brew/homebrew/bin/gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.spacemacs.d/joshi.127@osu.edu.asc"
 # UseIMAPS yes
 AuthMechs LOGIN
 SSLType IMAPS
