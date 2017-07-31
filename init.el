@@ -344,11 +344,17 @@ you should place your code here."
 
 ;;; msmtp to send emails
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
-(setq sendmail-program "~/.brew/homebrew/bin/msmtp --file=~/.spacemacs.d/msmtprc")
+(setq sendmail-program "~/.brew/homebrew/bin/msmtp")
 
 ;;; User info
 (setq user-full-name "Swaroop Joshi"
       user-mail-address "swaroopj.cse@gmail.com")
+
+;;; Mail signature
+(setq mu4e-compose-signature "Swaroop
+Copy paste this message at https://keybase.io/verify to verify it came
+from me and reached you untampered.
+To send me an encrypted message, use https://keybase.io/encrypt#swaroop.")
 
 ;;; Set the spell check program
   (setq ispell-program-name "~/.brew/homebrew/bin/aspell")
