@@ -1,10 +1,11 @@
 * .spacemacs
 My spacemacs configuration
-** TODO Things I would like to do in my configuration [0/6]
-   - [ ] key bindings
+** TODO Things I would like to do in my configuration [2/7]
+   - [X] key bindings
    - [ ] helm-bibtex
    - [ ] org-ref
    - [ ] python
    - [ ] flycheck configuration
-   - [ ] mu4e msmtp setup
+   - [X] mu4e msmtp setup
+   - [ ] Better organization of the custom keybindings
 
