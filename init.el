@@ -64,9 +64,9 @@ values."
       :variables latex-enable-auto-fill t
                  latex-enable-folding t)
      nlinum
-     (mu4e :variables
-           mu4e-installation-path "~/.brew/homebrew/Cellar/mu/0.9.18/share/emacs/site-lisp/"
-           mu4e-enable-mode-line t)
+     ;; (mu4e :variables
+           ;; mu4e-installation-path "~/.brew/homebrew/Cellar/mu/0.9.18/share/emacs/site-lisp/"
+           ;; mu4e-enable-mode-line t)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -318,8 +318,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (add-to-list 'load-path "~/.brew/homebrew/Cellar/mu/0.9.18/share/emacs/site-lisp/mu/mu4e/")
-  (setq mu4e-mu-binary "~/.brew/homebrew/bin/mu")
+  ;; (add-to-list 'load-path "~/.brew/homebrew/Cellar/mu/0.9.18/share/emacs/site-lisp/mu/mu4e/")
+  ;; (setq mu4e-mu-binary "~/.brew/homebrew/bin/mu")
   )
 
 (defun dotspacemacs/user-config ()
@@ -340,42 +340,42 @@ you should place your code here."
         org-ref-pdf-directory "~/Documents/Research/bib/"
         org-ref-bibliography-notes "~/Documents/Research/bib/notes.org")
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-  (setq mu4e-maildir "~/.mail"
-        mu4e-trash-folder "/Trash"
-        mu4e-refile-folder "/Archive"
-        mu4e-drafts-folder "/[Gmail].Drafts"
-        mu4e-sent-folder   "/[Gmail].Sent Mail"
-        mu4e-attachment-dir "~/Desktop"
-        mu4e-use-fancy-chars t
-        mu4e-get-mail-command "~/.brew/homebrew/bin/mbsync -a --config ~/.spacemacs.d/mbsyncrc"
-        mu4e-update-interval nil
-        mu4e-compose-signature-auto-include t
-        mu4e-view-show-images t
-        message-kill-buffer-on-exit t
-        mu4e-view-show-addresses t)
+  ;; (setq mu4e-maildir "~/.mail"
+        ;; mu4e-trash-folder "/Trash"
+        ;; mu4e-refile-folder "/Archive"
+        ;; mu4e-drafts-folder "/[Gmail].Drafts"
+        ;; mu4e-sent-folder   "/[Gmail].Sent Mail"
+        ;; mu4e-attachment-dir "~/Desktop"
+        ;; mu4e-use-fancy-chars t
+        ;; mu4e-get-mail-command "~/.brew/homebrew/bin/mbsync -a --config ~/.spacemacs.d/mbsyncrc"
+        ;; mu4e-update-interval nil
+        ;; mu4e-compose-signature-auto-include t
+        ;; mu4e-view-show-images t
+        ;; message-kill-buffer-on-exit t
+        ;; mu4e-view-show-addresses t)
 
 ;;; Mail directory shortcuts
-  (setq mu4e-maildir-shortcuts
-        '(("/gmail/Inbox/" . ?g)
-          ("/osu/inbox/" . ?c)))
+  ;; (setq mu4e-maildir-shortcuts
+        ;; '(("/gmail/Inbox/" . ?g)
+          ;; ("/osu/inbox/" . ?c)))
   )
 ;;; Needed to avoid duplicate UID errors
-  (setq mu4e-change-filenames-when-moving t)
+  ;; (setq mu4e-change-filenames-when-moving t)
 
 ;;; msmtp to send emails
-(setq message-send-mail-function 'message-send-mail-with-sendmail)
-(setq sendmail-program "~/.brew/homebrew/bin/msmtp")
+;; (setq message-send-mail-function 'message-send-mail-with-sendmail)
+;; (setq sendmail-program "~/.brew/homebrew/bin/msmtp")
 
 ;;; User info
-(setq user-full-name "Swaroop Joshi"
-      user-mail-address "swaroopj.cse@gmail.com"
-      mu4e-reply-to-address "joshi.127@osu.edu")
+;; (setq user-full-name "Swaroop Joshi"
+      ;; user-mail-address "swaroopj.cse@gmail.com"
+      ;; mu4e-reply-to-address "joshi.127@osu.edu")
 
 ;;; Mail signature
-(setq mu4e-compose-signature "Swaroop
-Copy paste this message at https://keybase.io/verify to verify it came
-from me and reached you untampered.
-To send me an encrypted message, use https://keybase.io/encrypt#swaroop.")
+;; (setq mu4e-compose-signature "Swaroop
+;; Copy paste this message at https://keybase.io/verify to verify it came
+;; from me and reached you untampered.
+;; To send me an encrypted message, use https://keybase.io/encrypt#swaroop.")
 
 ;;; Set the spell check program
   (setq ispell-program-name "~/.brew/homebrew/bin/aspell")
