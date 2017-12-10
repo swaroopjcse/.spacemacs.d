@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     graphviz
      twitter
      python
      csv
@@ -64,15 +65,12 @@ values."
       :variables latex-enable-auto-fill t
                  latex-enable-folding t)
      nlinum
-     ;; (mu4e :variables
-           ;; mu4e-installation-path "~/.brew/homebrew/Cellar/mu/0.9.18/share/emacs/site-lisp/"
-           ;; mu4e-enable-mode-line t)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(google-contacts google-contacts-message)
+   ;; dotspacemacs-additional-packages '(google-contacts google-contacts-message)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -318,8 +316,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  ;; (add-to-list 'load-path "~/.brew/homebrew/Cellar/mu/0.9.18/share/emacs/site-lisp/mu/mu4e/")
-  ;; (setq mu4e-mu-binary "~/.brew/homebrew/bin/mu")
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -336,49 +333,24 @@ you should place your code here."
 ;;; this file contains my org-mode setup
   (load-file "~/.spacemacs.d/org.el")
 
-  (setq org-ref-default-bibliography '("~/Documents/Research/bib/references.bib")
-        org-ref-pdf-directory "~/Documents/Research/bib/"
-        org-ref-bibliography-notes "~/Documents/Research/bib/notes.org")
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-  ;; (setq mu4e-maildir "~/.mail"
-        ;; mu4e-trash-folder "/Trash"
-        ;; mu4e-refile-folder "/Archive"
-        ;; mu4e-drafts-folder "/[Gmail].Drafts"
-        ;; mu4e-sent-folder   "/[Gmail].Sent Mail"
-        ;; mu4e-attachment-dir "~/Desktop"
-        ;; mu4e-use-fancy-chars t
-        ;; mu4e-get-mail-command "~/.brew/homebrew/bin/mbsync -a --config ~/.spacemacs.d/mbsyncrc"
-        ;; mu4e-update-interval nil
-        ;; mu4e-compose-signature-auto-include t
-        ;; mu4e-view-show-images t
-        ;; message-kill-buffer-on-exit t
-        ;; mu4e-view-show-addresses t)
 
-;;; Mail directory shortcuts
-  ;; (setq mu4e-maildir-shortcuts
-        ;; '(("/gmail/Inbox/" . ?g)
-          ;; ("/osu/inbox/" . ?c)))
-  )
-;;; Needed to avoid duplicate UID errors
-  ;; (setq mu4e-change-filenames-when-moving t)
-
-;;; msmtp to send emails
-;; (setq message-send-mail-function 'message-send-mail-with-sendmail)
-;; (setq sendmail-program "~/.brew/homebrew/bin/msmtp")
-
-;;; User info
-;; (setq user-full-name "Swaroop Joshi"
-      ;; user-mail-address "swaroopj.cse@gmail.com"
-      ;; mu4e-reply-to-address "joshi.127@osu.edu")
-
-;;; Mail signature
-;; (setq mu4e-compose-signature "Swaroop
-;; Copy paste this message at https://keybase.io/verify to verify it came
-;; from me and reached you untampered.
-;; To send me an encrypted message, use https://keybase.io/encrypt#swaroop.")
-
-;;; Set the spell check program
+  ;;; Set the spell check program
   (setq ispell-program-name "~/.brew/homebrew/bin/aspell")
+
+  ;;; helm-bibtex configuration
+  (setq org-ref-default-bibliography '("~/Documents/Research/bib/refs.bib")
+        org-ref-pdf-directory "~/Documents/Research/bib/pdfs/"
+        org-ref-bibliography-notes "~/Documents/Research/bib/notes.org")
+  (setq bibtex-autokey-year-length 4
+        bibtex-autokey-name-year-separator "-"
+        bibtex-autokey-year-title-separator "-"
+        bibtex-autokey-titleword-separator "-"
+        bibtex-autokey-titlewords 2
+        bibtex-autokey-titlewords-stretch 1
+        bibtex-autokey-titleword-length 5)
+
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -387,11 +359,14 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ede-project-directories
+   (quote
+    ("/Users/swaroop/Documents/Teaching/2221/projects/Proj07")))
  '(epg-gpg-program "/Users/swaroop/.brew/homebrew/bin/gpg2")
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (twittering-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic ess-smart-equals ess-R-data-view ctable ess julia-mode csv-mode js2-refactor web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data toml-mode racer flycheck-rust seq cargo rust-mode origami google-contacts oauth2 mu4e-maildirs-extension mu4e-alert nlinum-relative nlinum flycheck-pos-tip pos-tip flycheck flyspell-correct-helm flyspell-correct auto-dictionary company-auctex auctex-latexmk auctex org-ref pdf-tools key-chord ivy tablist helm-bibtex parsebib biblio biblio-core magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht helm-company helm-c-yasnippet fuzzy company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl org-projectile org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async org-plus-contrib evil-unimpaired)))
+    (graphviz-dot-mode ensime twittering-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic ess-smart-equals ess-R-data-view ctable ess julia-mode csv-mode js2-refactor web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data toml-mode racer flycheck-rust seq cargo rust-mode origami google-contacts oauth2 mu4e-maildirs-extension mu4e-alert nlinum-relative nlinum flycheck-pos-tip pos-tip flycheck flyspell-correct-helm flyspell-correct auto-dictionary company-auctex auctex-latexmk auctex org-ref pdf-tools key-chord ivy tablist helm-bibtex parsebib biblio biblio-core magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht helm-company helm-c-yasnippet fuzzy company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl org-projectile org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async org-plus-contrib evil-unimpaired)))
  '(safe-local-variable-values (quote ((TeX-master . "../sjthesis")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
