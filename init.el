@@ -364,6 +364,44 @@ you should place your code here."
         bibtex-autokey-titlewords-stretch 1
         bibtex-autokey-titleword-length 5)
 
+  ;; Set the proper ditaa path
+  ;; See https://www.johndcook.com/blog/2016/06/15/ascii-art-diagrams-in-emacs-org-mode/
+  (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.10/libexec/ditaa0_10.jar")
+  (with-eval-after-load 'org
+    (org-babel-do-load-languages 'org-babel-load-languages '(
+                                                             (python . t)
+                                                             (ditaa . t))
+                                 )
+    )
+  ;; From https://stackoverflow.com/a/44966680/3259704
+  (setq org-latex-image-default-width "")
+
+  ;; Syntex with skim from https://mssun.me/blog/spacemacs-and-latex.html
+  (cond
+   ((string-equal system-type "darwin")
+    (progn (setq TeX-view-program-selection '((output-pdf "Skim")))))
+   ((string-equal system-type "gnu/linux")
+    (progn (setq TeX-view-program-selection '((output-pdf "Okular"))))))
+  (setq TeX-source-correlate-mode t)
+  (setq TeX-source-correlate-start-server t)
+  (setq TeX-source-correlate-method 'synctex)
+  (setq TeX-view-program-list
+        '(("Okular" "okular --unique %o#src:%n`pwd`/./%b")
+          ("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")
+          ("Zathura"
+           ("zathura %o"
+            (mode-io-correlate
+             " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\"")))))
+
+  ;; From https://github.com/syl20bnr/spacemacs/issues/9603
+  (org-defkey org-mode-map [(meta return)] 'org-meta-return)
+
+  ;; Bind clang-format-buffer to tab on the c++-mode only:
+  ;; (add-hook 'c++-mode-hook 'clang-format-bindings)
+  ;; (defun clang-format-bindings ()
+    ;; (define-key c++-mode-map [tab] 'clang-format-buffer))
+
+  ;; (global-set-key (kbd "C-i") 'yas-expand)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -373,15 +411,13 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ede-project-directories
-   (quote
-    ("/Users/swaroop/Documents/Teaching/2221/projects/Proj07")))
+ '(doc-view-continuous t)
  '(epg-gpg-program "/Users/swaroop/.brew/homebrew/bin/gpg2")
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (graphviz-dot-mode ensime twittering-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic ess-smart-equals ess-R-data-view ctable ess julia-mode csv-mode js2-refactor web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data toml-mode racer flycheck-rust seq cargo rust-mode origami google-contacts oauth2 mu4e-maildirs-extension mu4e-alert nlinum-relative nlinum flycheck-pos-tip pos-tip flycheck flyspell-correct-helm flyspell-correct auto-dictionary company-auctex auctex-latexmk auctex org-ref pdf-tools key-chord ivy tablist helm-bibtex parsebib biblio biblio-core magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito pcache ht helm-company helm-c-yasnippet fuzzy company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl org-projectile org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async org-plus-contrib evil-unimpaired)))
- '(safe-local-variable-values (quote ((TeX-master . "../sjthesis")))))
+    (disaster company-c-headers cmake-mode clang-format noflet ensime sbt-mode scala-mode insert-shebang fish-mode company-shell auctex-latexmk org yapfify yaml-mode ws-butler winum web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package twittering-mode toml-mode toc-org tagedit spaceline powerline smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder restart-emacs rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el pbcopy paradox spinner osx-trash osx-dictionary origami orgit org-ref pdf-tools key-chord ivy tablist org-present org-pomodoro alert log4e gntp org-download org-bullets open-junk-file nlinum-relative neotree move-text mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode link-hint less-css-mode launchctl json-snatcher js2-refactor multiple-cursors js-doc info+ indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-bibtex parsebib helm-ag haml-mode google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-rust seq flycheck-pos-tip pos-tip flycheck pkg-info epl flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu highlight ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode elisp-slime-nav dumb-jump diminish cython-mode company-web web-completion-data company-tern dash-functional tern company-auctex company-anaconda column-enforce-mode clean-aindent-mode cargo rust-mode bind-map bind-key biblio biblio-core auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile packed anaconda-mode pythonic ace-link ace-jump-helm-line helm helm-core ac-ispell auto-complete popup yasnippet which-key undo-tree org-plus-contrib nlinum json-mode js2-mode hydra graphviz-dot-mode evil-unimpaired csv-mode company-statistics coffee-mode auctex async aggressive-indent adaptive-wrap ace-window)))
+ '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
