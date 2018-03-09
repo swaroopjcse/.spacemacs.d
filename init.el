@@ -329,6 +329,8 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
+  (push '("ensime" . "melpa-stable") package-pinned-packages)
   )
 
 (defun dotspacemacs/user-config ()
@@ -348,7 +350,7 @@ you should place your code here."
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   ;;; Set the spell check program
-  (setq ispell-program-name "~/.brew/homebrew/bin/aspell")
+  (setq ispell-program-name "/usr/local/bin/aspell")
 
   ;;; helm-bibtex configuration
   (setq org-ref-default-bibliography '("~/Documents/Research/bib/refs.bib")
