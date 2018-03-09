@@ -31,9 +31,16 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     shell-scripts
      graphviz
      twitter
-     python
+     (python
+      :variables python-enable-yapf-format-on-save t
+                 python-test-runner 'pytest
+                 python-fill-column 99
+                 python-sort-imports-on-save t)
+     java
+     scala
      csv
      javascript
      yaml
@@ -46,7 +53,9 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     auto-completion
+     (auto-completion :variables ;;auto-completion-tab-key-behavior 'cycle
+                      auto-completion-private-snippets-directory "~/.spacemacs.d/sippets/private"
+                      auto-completion-enable-snippets-in-popup t)
      ;; better-defaults
      emacs-lisp
      git
@@ -64,6 +73,9 @@ values."
      (latex
       :variables latex-enable-auto-fill t
                  latex-enable-folding t)
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
      nlinum
      )
    ;; List of additional packages that will be installed without being
