@@ -361,6 +361,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
   ;; (push '("ensime" . "melpa-stable") package-pinned-packages)
+
+  ;; Set the spell check program
+  (setq ispell-program-name "/usr/local/bin/aspell")
   )
 
 (defun dotspacemacs/user-config ()
@@ -390,9 +393,6 @@ you should place your code here."
   ;; (load-file "~/.spacemacs.d/org.el")
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-
-  ;;; Set the spell check program
-  (setq ispell-program-name "/usr/local/bin/aspell")
 
   ;;; helm-bibtex configuration
   (setq org-ref-default-bibliography '("~/Documents/Research/bib/refs.bib")
