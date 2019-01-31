@@ -67,7 +67,14 @@ values."
      git
      github
      markdown
-     org
+     (org :variables
+          org-directory "~/org"
+          org-ref-default-bibliography '("~/git/bib/refs.bib")
+          org-ref-pdf-directory "~/git/bib/pdfs"
+          org-ref-bibliography-notes "~/git/bib/notes.org"
+          org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0/libexec/ditaa-0.11.0-standalone.jar" ;; may change for a different version/path of ditaa - check
+          org-latex-image-default-width ""
+          )
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -75,9 +82,27 @@ values."
      syntax-checking
      ;; version-control
      osx
-     bibtex
-     (latex     :variables latex-enable-auto-fill t
-                latex-enable-folding t)
+     (bibtex :variables
+             bibtex-autokey-year-length 4
+             bibtex-autokey-name-year-separator "-"
+             bibtex-autokey-year-title-separator "-"
+             bibtex-autokey-titleword-separator "-"
+             bibtex-autokey-titlewords 2
+             bibtex-autokey-titlewords-stretch 1
+             bibtex-autokey-titleword-length 5)
+     (latex :variables
+            latex-enable-auto-fill t
+            latex-enable-folding t
+            TeX-source-correlate-mode t
+            TeX-source-correlate-start-server t
+            TeX-source-correlate-method 'synctex
+            TeX-view-program-list
+            '(("Okular" "okular --unique %o#src:%n`pwd`/./%b")
+              ("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")
+              ("Zathura"
+               ("zathura %o"
+                (mode-io-correlate
+                 " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\"")))))
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
@@ -361,7 +386,7 @@ you should place your code here."
   (load-file "~/.spacemacs.d/custom.el")
 
 ;;; this file contains my org-mode setup
-  (load-file "~/.spacemacs.d/org.el")
+  ;; (load-file "~/.spacemacs.d/org.el")
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
@@ -372,17 +397,17 @@ you should place your code here."
   (setq org-ref-default-bibliography '("~/Documents/Research/bib/refs.bib")
         org-ref-pdf-directory "~/Documents/Research/bib/pdfs/"
         org-ref-bibliography-notes "~/Documents/Research/bib/notes.org")
-  (setq bibtex-autokey-year-length 4
-        bibtex-autokey-name-year-separator "-"
-        bibtex-autokey-year-title-separator "-"
-        bibtex-autokey-titleword-separator "-"
-        bibtex-autokey-titlewords 2
-        bibtex-autokey-titlewords-stretch 1
-        bibtex-autokey-titleword-length 5)
+  ;; (setq bibtex-autokey-year-length 4
+  ;; bibtex-autokey-name-year-separator "-"
+  ;; bibtex-autokey-year-title-separator "-"
+  ;; bibtex-autokey-titleword-separator "-"
+  ;; bibtex-autokey-titlewords 2
+  ;; bibtex-autokey-titlewords-stretch 1
+  ;; bibtex-autokey-titleword-length 5)
 
   ;; Set the proper ditaa path
   ;; See https://www.johndcook.com/blog/2016/06/15/ascii-art-diagrams-in-emacs-org-mode/
-  (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.10/libexec/ditaa0_10.jar")
+  ;; (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.10/libexec/ditaa0_10.jar")
   (with-eval-after-load 'org
     (org-babel-do-load-languages 'org-babel-load-languages '(
                                                              (python . t)
@@ -391,7 +416,7 @@ you should place your code here."
                                  )
     )
   ;; From https://stackoverflow.com/a/44966680/3259704
-  (setq org-latex-image-default-width "")
+  ;; (setq org-latex-image-default-width "")
 
   ;; Syntex with skim from https://mssun.me/blog/spacemacs-and-latex.html
   (cond
@@ -411,12 +436,12 @@ you should place your code here."
              " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\"")))))
 
   ;; From https://github.com/syl20bnr/spacemacs/issues/9603
-  (org-defkey org-mode-map [(meta return)] 'org-meta-return)
+  ;; (org-defkey org-mode-map [(meta return)] 'org-meta-return)
 
   ;; Bind clang-format-buffer to tab on the c++-mode only:
   ;; (add-hook 'c++-mode-hook 'clang-format-bindings)
   ;; (defun clang-format-bindings ()
-    ;; (define-key c++-mode-map [tab] 'clang-format-buffer))
+  ;; (define-key c++-mode-map [tab] 'clang-format-buffer))
 
   ;; (global-set-key (kbd "C-i") 'yas-expand)
   )
@@ -429,14 +454,10 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(doc-view-continuous t)
- '(epg-gpg-program "/usr/local/MacGPG2/bin/gpg2")
  '(evil-want-Y-yank-to-eol nil)
- '(org-agenda-files
-   (quote
-    ("~/Documents/Research/bib/notes.org" "~/Documents/org/main.org" "~/Documents/org/notes.org" "~/Documents/org/someday.org")))
  '(package-selected-packages
    (quote
-    (company-quickhelp company-emacs-eclim eclim org-mime json-reformat company intero hlint-refactor hindent helm-hoogle haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode disaster company-c-headers cmake-mode clang-format noflet ensime sbt-mode scala-mode insert-shebang fish-mode company-shell auctex-latexmk org yapfify yaml-mode ws-butler winum web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package twittering-mode toml-mode toc-org tagedit spaceline powerline smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder restart-emacs rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el pbcopy paradox spinner osx-trash osx-dictionary origami orgit org-ref pdf-tools key-chord ivy tablist org-present org-pomodoro alert log4e gntp org-download org-bullets open-junk-file nlinum-relative neotree move-text mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode link-hint less-css-mode launchctl json-snatcher js2-refactor multiple-cursors js-doc info+ indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-bibtex parsebib helm-ag haml-mode google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-rust seq flycheck-pos-tip pos-tip flycheck pkg-info epl flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu highlight ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode elisp-slime-nav dumb-jump diminish cython-mode company-web web-completion-data company-tern dash-functional tern company-auctex company-anaconda column-enforce-mode clean-aindent-mode cargo rust-mode bind-map bind-key biblio biblio-core auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile packed anaconda-mode pythonic ace-link ace-jump-helm-line helm helm-core ac-ispell auto-complete popup yasnippet which-key undo-tree org-plus-contrib nlinum json-mode js2-mode hydra graphviz-dot-mode evil-unimpaired csv-mode company-statistics coffee-mode auctex async aggressive-indent adaptive-wrap ace-window)))
+    (pfuture stickyfunc-enhance srefactor treemacs-projectile treemacs poet-theme mu4e-maildirs-extension mu4e-alert company-quickhelp company-emacs-eclim eclim org-mime json-reformat company intero hlint-refactor hindent helm-hoogle haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode disaster company-c-headers cmake-mode clang-format noflet ensime sbt-mode scala-mode insert-shebang fish-mode company-shell auctex-latexmk org yapfify yaml-mode ws-butler winum web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package twittering-mode toml-mode toc-org tagedit spaceline powerline smeargle slim-mode scss-mode sass-mode reveal-in-osx-finder restart-emacs rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el pbcopy paradox spinner osx-trash osx-dictionary origami orgit org-ref pdf-tools key-chord ivy tablist org-present org-pomodoro alert log4e gntp org-download org-bullets open-junk-file nlinum-relative neotree move-text mmm-mode markdown-toc markdown-mode magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode skewer-mode simple-httpd live-py-mode link-hint less-css-mode launchctl json-snatcher js2-refactor multiple-cursors js-doc info+ indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make projectile helm-gitignore request helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-bibtex parsebib helm-ag haml-mode google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh marshal logito pcache ht gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-rust seq flycheck-pos-tip pos-tip flycheck pkg-info epl flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg eval-sexp-fu highlight ess-smart-equals ess-R-data-view ctable ess julia-mode emmet-mode elisp-slime-nav dumb-jump diminish cython-mode company-web web-completion-data company-tern dash-functional tern company-auctex company-anaconda column-enforce-mode clean-aindent-mode cargo rust-mode bind-map bind-key biblio biblio-core auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile packed anaconda-mode pythonic ace-link ace-jump-helm-line helm helm-core ac-ispell auto-complete popup yasnippet which-key undo-tree org-plus-contrib nlinum json-mode js2-mode hydra graphviz-dot-mode evil-unimpaired csv-mode company-statistics coffee-mode auctex async aggressive-indent adaptive-wrap ace-window)))
  '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
