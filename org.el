@@ -93,7 +93,7 @@
 (setq epa-file-select-keys nil)
 ;; Set GPG program
 (custom-set-variables
- '(epg-gpg-program "/Users/swaroop/.brew/homebrew/bin/gpg2"))
+ '(epg-gpg-program "/usr/local/bin/gpg"))
 ;; https://colinxy.github.io/software-installation/2016/09/24/emacs25-easypg-issue.html
 (setf epa-pinentry-mode 'loopback)`
 
