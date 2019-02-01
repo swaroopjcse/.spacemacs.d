@@ -36,8 +36,6 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; (treemacs :variables treemacs-use-follow-mode t
-     ;; treemacs-use-filewatch-mode t)
      haskell
      shell-scripts
      graphviz
@@ -67,14 +65,7 @@ values."
      git
      github
      markdown
-     (org :variables
-          org-directory "~/org"
-          org-ref-default-bibliography '("~/git/bib/refs.bib")
-          org-ref-pdf-directory "~/git/bib/pdfs"
-          org-ref-bibliography-notes "~/git/bib/notes.org"
-          org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.11.0/libexec/ditaa-0.11.0-standalone.jar" ;; may change for a different version/path of ditaa - check
-          org-latex-image-default-width ""
-          )
+     org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -176,8 +167,7 @@ values."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7)
-                                (agenda . nil))
+                                (projects . 7))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -389,33 +379,44 @@ you should place your code here."
 ;;; this file contains my custom keybindings
   (load-file "~/.spacemacs.d/custom.el")
 
-;;; this file contains my org-mode setup
-  ;; (load-file "~/.spacemacs.d/org.el")
-
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-
-  ;;; helm-bibtex configuration
-  (setq org-ref-default-bibliography '("~/Documents/Research/bib/refs.bib")
-        org-ref-pdf-directory "~/Documents/Research/bib/pdfs/"
-        org-ref-bibliography-notes "~/Documents/Research/bib/notes.org")
-  ;; (setq bibtex-autokey-year-length 4
-  ;; bibtex-autokey-name-year-separator "-"
-  ;; bibtex-autokey-year-title-separator "-"
-  ;; bibtex-autokey-titleword-separator "-"
-  ;; bibtex-autokey-titlewords 2
-  ;; bibtex-autokey-titlewords-stretch 1
-  ;; bibtex-autokey-titleword-length 5)
 
   ;; Set the proper ditaa path
   ;; See https://www.johndcook.com/blog/2016/06/15/ascii-art-diagrams-in-emacs-org-mode/
   ;; (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.10/libexec/ditaa0_10.jar")
   (with-eval-after-load 'org
-    (org-babel-do-load-languages 'org-babel-load-languages '(
-                                                             (python . t)
-                                                             (ditaa . t)
-                                                             (scala . t))
-                                 )
+    (setq org-directory "~/org")
+    (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+    (setq org-enable-github-support t)
+    (setq org-default-notes-file (concat org-directory "/main.org"))
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline "~/org/main.org" "Tasks") "* TODO %?\n  %i\n  %a")
+            ("j" "Journal" entry (file+datetree "~/org/journal.org") "* %?\nEntered on %U\n  %i\n  %a")))
+    (setq org-agenda-files (list "~/org/main.org"
+                                 "~/org/someday.org"))
+    ;; From norang https://duckduckgo.com/l/?kh=-1&uddg=http%3A%2F%2Fdoc.norang.ca%2Forg%2Dmode.html
+    (require 'org-crypt)
+                                        ; Encrypt all entries before saving
+    (org-crypt-use-before-save-magic)
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+                                        ; GPG key to use for encryption
+
+    ;; GPG key to use for encryption
+    ;; Either the Key ID or set to nil to use symmetric encryption.
+    (setq org-crypt-key nil)
+    ;; (setq org-crypt-key "7B8810EF0F59C496C78F8EF15C07A55E01FCA00C")
+
+    ;; Auto-saving does not cooperate with org-crypt.el: so you need
+    ;; to turn it off if you plan to use org-crypt.el quite often.
+    ;; Otherwise, you'll get an (annoying) message each time you
+    ;; start Org.
+
+    ;; To turn it off only locally, you can insert this:
+    ;;
+    ;; # -*- buffer-auto-save-file-name: nil; -*-
+    (setq auto-save-default nil)
     )
+  
   ;; From https://stackoverflow.com/a/44966680/3259704
   ;; (setq org-latex-image-default-width "")
 
