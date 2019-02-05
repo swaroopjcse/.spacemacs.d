@@ -49,8 +49,6 @@ values."
      javascript
      yaml
      html
-     rust
-     ess
      helm
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
