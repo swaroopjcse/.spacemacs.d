@@ -407,12 +407,32 @@ you should place your code here."
              (file+datetree "~/org/journal.org")
              "* %?\nEntered on %U\n  %i\n  %a")))
 
-    (setq org-refile-targets '(("~/org/gtd.org" :maxlevel . 3)
+    (setq org-refile-targets '(("~/org/gtd.org" :maxlevel . 1)
                                ("~/org/someday.org" :level . 1)
-                               ("~/org/tickler.org" :maxlevel . 2)))
+                               ("~/org/tickler.org" :maxlevel . 1)))
 
     (setq org-todo-keywords
-    '((sequence "TODO(t)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELLED(c)")))
+          '((sequence "TODO(t)" "STARTED(s)" "PAUSED(p)" "|" "DONE(d)" "CANCELLED(c)")))
+
+    ;; Default parameters for agenda clockreport -- other options at
+    ;; https://www.gnu.org/software/emacs/manual/html_node/org/The-clock-table.html
+    (setq org-agenda-clockreport-parameter-plist '(:maxlevel 2 :link t :formula %))
+    ;; Change tasks to whatever when clocking in and out
+    (setq org-clock-in-switch-to-state "STARTED")
+    (setq org-clock-out-switch-to-state "PAUSED")
+    ;; Save clock data and state changes and notes in the LOGBOOK drawer
+    (setq org-clock-into-drawer t)
+    ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks
+    ;; with 0:00 duration
+    (setq org-clock-out-remove-zero-time-clocks t)
+    ;; Clock out when moving task to a done state
+    (setq org-clock-out-when-done t)
+    ;; Enable auto clock resolution for finding open clocks
+    (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
+    ;; Include current clocking task in clock reports
+    (setq org-clock-report-include-clocking-task t)
+    ;; use pretty things for the clocktable
+    (setq org-pretty-entities t)
 
     (org-babel-do-load-languages
      'org-babel-load-languages '((python . t)
