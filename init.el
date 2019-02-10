@@ -417,6 +417,7 @@ you should place your code here."
 
     (setq org-todo-keywords
           '((sequence "TODO(t)" "STARTED(s)" "PAUSED(p)" "|" "DONE(d)" "CANCELLED(c)")))
+    (setq org-enforce-todo-dependencies t)
 
     ;; Default parameters for agenda clockreport -- other options at
     ;; https://www.gnu.org/software/emacs/manual/html_node/org/The-clock-table.html
