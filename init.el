@@ -394,7 +394,8 @@ you should place your code here."
 
     (setq org-agenda-files '("~/org/inbox.org"
                          "~/org/gtd.org"
-                         "~/org/tickler.org"))
+                         "~/org/tickler.org"
+                         "~/git/oup-android-book/androidbook.org"))
 
     (setq org-capture-templates
           '(("t" "Todo [inbox]" entry
