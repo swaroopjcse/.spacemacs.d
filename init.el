@@ -363,6 +363,9 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  (display-time-mode t)
+  (display-battery-mode t)
+
   (setq exec-path (append exec-path '("/usr/local/bin")))
 
   (setq eclim-eclipse-dirs "/Applications/Eclipse.app//Contents/MacOS/eclipse"
