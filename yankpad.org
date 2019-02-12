@@ -1,0 +1,9 @@
+* org
+** Insert figures                                                    :fig:f:
+   #+CAPTION: 
+   #+LABEL: fig:
+   #+ATTR_LATEX: :width .7\textwidth :placement [!h]
+   
+* latex
+* java
+* python

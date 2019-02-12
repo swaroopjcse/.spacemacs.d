@@ -102,7 +102,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(treemacs treemacs-projectile)
+   dotspacemacs-additional-packages '(treemacs treemacs-projectile yankpad define-word)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -382,7 +382,7 @@ you should place your code here."
   ;; treemacs related variables
   (setq treemacs-use-follow-mode t
         treemacs-use-filewatch-mode t)
-
+  
 ;;; this file contains my custom keybindings
   (load-file "~/.spacemacs.d/custom.el")
 
@@ -448,6 +448,12 @@ you should place your code here."
      'org-babel-load-languages '((python . t)
                                  (ditaa . t)
                                  (scala . t)))
+
+    (use-package yankpad
+      :ensure t
+      :defer 10
+      :init
+      (setq yankpad-file "~/.spacemacs.d/yankpad.org"))
 
     ;; From norang https://duckduckgo.com/l/?kh=-1&uddg=http%3A%2F%2Fdoc.norang.ca%2Forg%2Dmode.html
     (require 'org-crypt)
