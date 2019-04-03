@@ -3,7 +3,27 @@
    #+CAPTION: 
    #+LABEL: fig:
    #+ATTR_LATEX: :width .7\textwidth :placement [!h]
-   
+** My letter                                              :orgmode:letter:l:
+#+SETUPFILE:osulet.org
+
+#+LATEX: \thispagestyle{firststyle}
+#+LATEX: \vspace*{1cm}
+
+#+LATEX: \today\par
+#+LATEX: \textbf{\toname}\\
+#+LATEX: \toaddr\par\bigskip
+#+LATEX: \salutations\par
+
+#+LATEX: \lipsum[1-5]
+
+Enter your text here.
+
+
+#+LATEX: \closing \par \bigskip \bigskip
+#+LATEX: \fromname \ifthenelse{\isundefined{\fromdeg}}{}{, \fromdeg} \par
+#+LATEX: {\small \fromaffiliation}\label{LastPage}
+
+
 * latex
 * java
 * python
