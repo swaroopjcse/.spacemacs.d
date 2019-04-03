@@ -45,4 +45,12 @@
 ;; Open files using a more natural keybinding
 (global-set-key (kbd "s-o") 'helm-find-files)
 
+;; Spacemacs specific -- shortcut to jump between layouts
+(global-set-key (kbd "s-1") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-1)
+(global-set-key (kbd "s-2") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-2)
+(global-set-key (kbd "s-3") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-3)
+(global-set-key (kbd "s-4") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-4)
+(global-set-key (kbd "s-5") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-5)
+
+
 
