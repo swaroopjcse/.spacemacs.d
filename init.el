@@ -366,149 +366,153 @@ you should place your code here."
   ;; Importing some customizations from scimax
   ;; https://github.com/jkitchin/scimax
   ;; (setq scimax-dir "/Users/swaroop/Downloads/scimax")
-  ;; (add-to-list 'load-path "/Users/swaroop/Downloads/scimax")
+  ;; (add-to-list 'load-pathorg
+  "/Users/swaroop/Downloads/scimax")
 
-  (display-time-mode t)
-  (display-battery-mode t)
+(display-time-mode t)
+(display-battery-mode t)
 
-  (setq exec-path (append exec-path '("/usr/local/bin")))
+(setq exec-path (append exec-path '("/usr/local/bin")))
 
-  (setq eclim-eclipse-dirs "/Applications/Eclipse.app//Contents/MacOS/eclipse"
-        eclim-executable "/Applications/Eclipse.app//Contents/Eclipse/plugins/org.eclim_2.8.0/bin/eclim")
+(setq eclim-eclipse-dirs "/Applications/Eclipse.app//Contents/MacOS/eclipse"
+      eclim-executable "/Applications/Eclipse.app//Contents/Eclipse/plugins/org.eclim_2.8.0/bin/eclim")
 
-  ;; (add-hook 'java-mode-hook 'scala/configure-ensime)
-  ;; (add-hook 'java-mode-hook 'scala/maybe-start-ensime)
+;; (add-hook 'java-mode-hook 'scala/configure-ensime)
+;; (add-hook 'java-mode-hook 'scala/maybe-start-ensime)
 
-  ;; treemacs related variables
-  (setq treemacs-use-follow-mode t
-        treemacs-use-filewatch-mode t)
-  
+;; treemacs related variables
+(setq treemacs-use-follow-mode t
+      treemacs-use-filewatch-mode t)
+
 ;;; this file contains my custom keybindings
-  (load-file "~/.spacemacs.d/custom.el")
+(load-file "~/.spacemacs.d/custom.el")
 
-  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
-  ;; Set the proper ditaa path
-  ;; See https://www.johndcook.com/blog/2016/06/15/ascii-art-diagrams-in-emacs-org-mode/
-  ;; (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.10/libexec/ditaa0_10.jar")
-  (with-eval-after-load 'org
-    (setq org-directory "~/org")
-    (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
-    (setq org-enable-github-support t)
-    (setq org-default-notes-file (concat org-directory "/inbox.org"))
+;; Set the proper ditaa path
+;; See https://www.johndcook.com/blog/2016/06/15/ascii-art-diagrams-in-emacs-org-mode/
+;; (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.10/libexec/ditaa0_10.jar")
+(with-eval-after-load 'org
+  (setq org-directory "~/org")
+  (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+  (setq org-enable-github-support t)
+  (setq org-default-notes-file (concat org-directory "/inbox.org"))
 
-    (setq org-agenda-files '("~/org/inbox.org"
-                         "~/org/gtd.org"
-                         "~/org/tickler.org"
-                         "~/git/oup-android-book/androidbook.org"))
+  (setq org-agenda-files '("~/org/inbox.org"
+                           "~/org/gtd.org"
+                           "~/org/tickler.org"
+                           "~/git/oup-android-book/androidbook.org"))
 
-    (setq org-capture-templates
-          '(("t" "Todo [inbox]" entry
-             (file+headline "~/org/inbox.org" "Tasks")
-             "* TODO %i%?")
-            ("k" "Tickler" entry
-             (file+headline "~/org/tickler.org" "Tickler")
-             "* %i%? \n %^t")
-            ("q" "Quote" entry
-             (file+headline "~/org/quotes.org" "Quote")
-             "* %i%? %^g \n #+BEGIN_VERSE \n #+END_VERSE  \n %u")
-            ("j" "Journal" entry
-             (file+datetree "~/org/journal.org")
-             "* %?\nEntered on %U\n  %i\n  %a")))
+  (setq org-capture-templates
+        '(("t" "Todo [inbox]" entry
+           (file+headline "~/org/inbox.org" "Tasks")
+           "* TODO %i%?")
+          ("k" "Tickler" entry
+           (file+headline "~/org/tickler.org" "Tickler")
+           "* %i%? \n %^t")
+          ("q" "Quote" entry
+           (file+headline "~/org/quotes.org" "Quote")
+           "* %i%? %^g \n #+BEGIN_VERSE \n #+END_VERSE  \n %u")
+          ("j" "Journal" entry
+           (file+datetree "~/org/journal.org")
+           "* %?\nEntered on %U\n  %i\n  %a")))
 
-    (setq org-refile-targets '(("~/org/gtd.org" :maxlevel . 1)
-                               ("~/org/someday.org" :level . 1)
-                               ("~/org/tickler.org" :maxlevel . 1)))
+  (setq org-refile-targets '(("~/org/gtd.org" :maxlevel . 2)
+                             ("~/org/someday.org" :level . 1)
+                             ("~/org/tickler.org" :maxlevel . 1)))
 
-    (setq org-todo-keywords
-          '((sequence "TODO(t)" "STARTED(s)" "PAUSED(p)" "|" "DONE(d)" "CANCELLED(c)")))
-    (setq org-enforce-todo-dependencies t)
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "STARTED(s)" "PAUSED(p)" "|" "DONE(d)" "CANCELLED(c)")))
+  (setq org-enforce-todo-dependencies t)
 
-    ;; Default parameters for agenda clockreport -- other options at
-    ;; https://www.gnu.org/software/emacs/manual/html_node/org/The-clock-table.html
-    (setq org-agenda-clockreport-parameter-plist '(:maxlevel 2 :link t :formula %))
-    ;; Change tasks to whatever when clocking in and out
-    (setq org-clock-in-switch-to-state "STARTED")
-    (setq org-clock-out-switch-to-state "PAUSED")
-    ;; Save clock data and state changes and notes in the LOGBOOK drawer
-    (setq org-clock-into-drawer t)
-    ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks
-    ;; with 0:00 duration
-    (setq org-clock-out-remove-zero-time-clocks t)
-    ;; Clock out when moving task to a done state
-    (setq org-clock-out-when-done t)
-    ;; Enable auto clock resolution for finding open clocks
-    (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
-    ;; Include current clocking task in clock reports
-    (setq org-clock-report-include-clocking-task t)
-    ;; use pretty things for the clocktable
-    (setq org-pretty-entities t)
+  ;; Default parameters for agenda clockreport -- other options at
+  ;; https://www.gnu.org/software/emacs/manual/html_node/org/The-clock-table.html
+  (setq org-agenda-clockreport-parameter-plist '(:maxlevel 2 :link t :formula %))
+  ;; Change tasks to whatever when clocking in and out
+  (setq org-clock-in-switch-to-state "STARTED")
+  (setq org-clock-out-switch-to-state "PAUSED")
+  ;; Save clock data and state changes and notes in the LOGBOOK drawer
+  (setq org-clock-into-drawer t)
+  ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks
+  ;; with 0:00 duration
+  (setq org-clock-out-remove-zero-time-clocks t)
+  ;; Clock out when moving task to a done state
+  (setq org-clock-out-when-done t)
+  ;; Enable auto clock resolution for finding open clocks
+  (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
+  ;; Include current clocking task in clock reports
+  (setq org-clock-report-include-clocking-task t)
+  ;; use pretty things for the clocktable
+  (setq org-pretty-entities t)
 
-    (org-babel-do-load-languages
-     'org-babel-load-languages '((python . t)
-                                 (ditaa . t)
-                                 (scala . t)))
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((python . t)
+                               (ditaa . t)
+                               (scala . t)))
 
-    (use-package yankpad
-      :ensure t
-      :defer 10
-      :init
-      (setq yankpad-file "~/.spacemacs.d/yankpad.org"))
+  (use-package yankpad
+    :ensure t
+    :defer 10
+    :init
+    (setq yankpad-file "~/.spacemacs.d/yankpad.org"))
 
-    ;; From norang https://duckduckgo.com/l/?kh=-1&uddg=http%3A%2F%2Fdoc.norang.ca%2Forg%2Dmode.html
-    (require 'org-crypt)
+  ;; From norang https://duckduckgo.com/l/?kh=-1&uddg=http%3A%2F%2Fdoc.norang.ca%2Forg%2Dmode.html
+  (require 'org-crypt)
                                         ; Encrypt all entries before saving
-    (org-crypt-use-before-save-magic)
-    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+  (org-crypt-use-before-save-magic)
+  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
                                         ; GPG key to use for encryption
 
-    ;; GPG key to use for encryption
-    ;; Either the Key ID or set to nil to use symmetric encryption.
-    (setq org-crypt-key nil)
-    ;; (setq org-crypt-key "7B8810EF0F59C496C78F8EF15C07A55E01FCA00C")
+  ;; https://emacs.stackexchange.com/questions/32225/latex-export-uses-lstlisting-instead-of-minted-why
+  (setq org-export-latex-listings 'listings
+        org-latex-packages-alist '(("" "listings")))
+  ;; GPG key to use for encryption
+  ;; Either the Key ID or set to nil to use symmetric encryption.
+  (setq org-crypt-key nil)
+  ;; (setq org-crypt-key "7B8810EF0F59C496C78F8EF15C07A55E01FCA00C")
 
-    ;; Auto-saving does not cooperate with org-crypt.el: so you need
-    ;; to turn it off if you plan to use org-crypt.el quite often.
-    ;; Otherwise, you'll get an (annoying) message each time you
-    ;; start Org.
+  ;; Auto-saving does not cooperate with org-crypt.el: so you need
+  ;; to turn it off if you plan to use org-crypt.el quite often.
+  ;; Otherwise, you'll get an (annoying) message each time you
+  ;; start Org.
 
-    ;; To turn it off only locally, you can insert this:
-    ;;
-    ;; # -*- buffer-auto-save-file-name: nil; -*-
-    (setq auto-save-default nil)
-    )
-
-
-  ;; From https://stackoverflow.com/a/44966680/3259704
-  ;; (setq org-latex-image-default-width "")
-
-  ;; Syntex with skim from https://mssun.me/blog/spacemacs-and-latex.html
-  (cond
-   ((string-equal system-type "darwin")
-    (progn (setq TeX-view-program-selection '((output-pdf "Skim")))))
-   ((string-equal system-type "gnu/linux")
-    (progn (setq TeX-view-program-selection '((output-pdf "Okular"))))))
-  (setq TeX-source-correlate-mode t)
-  (setq TeX-source-correlate-start-server t)
-  (setq TeX-source-correlate-method 'synctex)
-  (setq TeX-view-program-list
-        '(("Okular" "okular --unique %o#src:%n`pwd`/./%b")
-          ("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")
-          ("Zathura"
-           ("zathura %o"
-            (mode-io-correlate
-             " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\"")))))
-
-  ;; From https://github.com/syl20bnr/spacemacs/issues/9603
-  ;; (org-defkey org-mode-map [(meta return)] 'org-meta-return)
-
-  ;; Bind clang-format-buffer to tab on the c++-mode only:
-  ;; (add-hook 'c++-mode-hook 'clang-format-bindings)
-  ;; (defun clang-format-bindings ()
-  ;; (define-key c++-mode-map [tab] 'clang-format-buffer))
-
-  ;; (global-set-key (kbd "C-i") 'yas-expand)
+  ;; To turn it off only locally, you can insert this:
+  ;;
+  ;; # -*- buffer-auto-save-file-name: nil; -*-
+  (setq auto-save-default nil)
   )
+
+
+;; From https://stackoverflow.com/a/44966680/3259704
+;; (setq org-latex-image-default-width "")
+
+;; Syntex with skim from https://mssun.me/blog/spacemacs-and-latex.html
+(cond
+ ((string-equal system-type "darwin")
+  (progn (setq TeX-view-program-selection '((output-pdf "Skim")))))
+ ((string-equal system-type "gnu/linux")
+  (progn (setq TeX-view-program-selection '((output-pdf "Okular"))))))
+(setq TeX-source-correlate-mode t)
+(setq TeX-source-correlate-start-server t)
+(setq TeX-source-correlate-method 'synctex)
+(setq TeX-view-program-list
+      '(("Okular" "okular --unique %o#src:%n`pwd`/./%b")
+        ("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")
+        ("Zathura"
+         ("zathura %o"
+          (mode-io-correlate
+           " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\"")))))
+
+;; From https://github.com/syl20bnr/spacemacs/issues/9603
+;; (org-defkey org-mode-map [(meta return)] 'org-meta-return)
+
+;; Bind clang-format-buffer to tab on the c++-mode only:
+;; (add-hook 'c++-mode-hook 'clang-format-bindings)
+;; (defun clang-format-bindings ()
+;; (define-key c++-mode-map [tab] 'clang-format-buffer))
+
+;; (global-set-key (kbd "C-i") 'yas-expand)
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

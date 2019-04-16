@@ -9,8 +9,13 @@
 #+LATEX: \thispagestyle{firststyle}
 #+LATEX: \vspace*{1cm}
 
+#+LATEX_HEADER: \def\toname{Teena Dixon}%
+#+LATEX_HEADER: \def\toaddr{6333 Kendall Ridge Blvd.\\Dublin, Ohio 43016}
+#+LATEX_HEADER: \def\salutations{Dear CIO Scholarship Chair:}%
+#+LATEX_HEADER: \def\closing{Sincerely,}%
+
 #+LATEX: \today\par
-#+LATEX: \textbf{\toname}\\
+#+LATEX: \textbf{\toname}\newline
 #+LATEX: \toaddr\par\bigskip
 #+LATEX: \salutations\par
 
@@ -22,7 +27,12 @@ Enter your text here.
 #+LATEX: \closing \par \bigskip \bigskip
 #+LATEX: \fromname \ifthenelse{\isundefined{\fromdeg}}{}{, \fromdeg} \par
 #+LATEX: {\small \fromaffiliation}\label{LastPage}
-
+** Beamer pause                                            :orgmode:beamer:p:
+   #+BEAMER: \pause
+** Insert src                                                     :orgmode:s:
+   #+BEGIN_SRC $1
+     $2
+   #+END_SRC
 
 * latex
 * java
