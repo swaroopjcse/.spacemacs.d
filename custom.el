@@ -51,6 +51,10 @@
 (global-set-key (kbd "s-3") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-3)
 (global-set-key (kbd "s-4") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-4)
 (global-set-key (kbd "s-5") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-5)
+(global-set-key (kbd "s-6") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-6)
+(global-set-key (kbd "s-7") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-7)
+(global-set-key (kbd "s-8") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-8)
+(global-set-key (kbd "s-9") 'spacemacs/layouts-transient-state/spacemacs/persp-switch-to-9)
 
 
 
