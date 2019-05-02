@@ -1,7 +1,7 @@
 [general]
 accounts = ieee
 maxsyncaccounts = 1
-pythonfile = ./offlineimap.py
+pythonfile = ~/.spacemacs.d/offlineimap.py
 
 [Account ieee]
 localrepository = ieee-local
@@ -16,7 +16,13 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
 [Repository ieee-remote]
 type = Gmail
 remoteuser = swaroopjoshi@ieee.org
-remotepasseval = get_ieee_pass()
+# Using oauth2 as per this post https://hobo.house/2017/07/17/using-offlineimap-with-the-gmail-imap-api/
+auth_mechanisms = XOAUTH2
+oauth2_client_id = 280065873341-tr2pduc16o6r1jj5vks56oalfa67kaqi.apps.googleusercontent.com
+oauth2_client_secret = B8hcAYQeMCK_jRsQawF5gZf2
+oauth2_request_url = https://accounts.google.com/o/oauth2/token
+oauth2_refresh_token = 1/pedVQiwEt5XjqAteCz5FNPnURmFaX1Nbaqq76Bi4CIw
+# remotepasseval = get_ieee_pass()
 realdelete = yes
 maxconnections = 3
 sslcacertfile = /usr/local/etc/openssl/cert.pem
