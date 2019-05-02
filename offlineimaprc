@@ -1,0 +1,26 @@
+[general]
+accounts = ieee
+maxsyncaccounts = 1
+pythonfile = ./offlineimap.py
+
+[Account ieee]
+localrepository = ieee-local
+remoterepository = ieee-remote
+
+[Repository ieee-local]
+type = Maildir
+localfolders = ~/.mail/ieee
+# Remove GMAIL prefix on Google-specific IMAP folders that are pulled down.
+nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent Mail'] else f
+
+[Repository ieee-remote]
+type = Gmail
+remoteuser = swaroopjoshi@ieee.org
+remotepasseval = get_ieee_pass()
+realdelete = yes
+maxconnections = 3
+sslcacertfile = /usr/local/etc/openssl/cert.pem
+# folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail', '[Gmail]/Drafts', '[Gmail]/Important', '[Gmail]/Sent Mail', '[Gmail]/Spam', '[Gmail]/Starred', '[Gmail]/Trash']
+# folderfilter = lambda folder: folder not in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent Mail']
+# remove Gmail prefix on IMAP folders
+nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else f
