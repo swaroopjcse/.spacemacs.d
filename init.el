@@ -33,7 +33,9 @@ values."
    '(
      (mu4e :variables
            mu4e-installation-path "/usr/local/Cellar/mu/1.0_1/share/emacs/site-lisp/mu/mu4e/"
-           mu4e-enable-mode-line t)
+           mu4e-enable-mode-line t
+           mu4e-enable-notifications t
+           mu4e-account-alist t)
      rust
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -402,13 +404,61 @@ you should place your code here."
   ;; mu4e configuration
   (with-eval-after-load 'mu4e
     (setq mu4e-maildir "~/.mail"
-          mu4e-trash-folder "/Trash"
-          mu4e-refile-folder "/Archive"
+          mu4e-sent-folder   "/sent"       ;; folder for sent messages
+          mu4e-drafts-folder "/drafts"     ;; unfinished messages
+          mu4e-trash-folder  "/trash"      ;; trashed messages
+          mu4e-refile-folder "/archive"    ;; refile
+          mu4e-attachment-dir  "~/Downloads"
+          mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout" ;; only on osx - see mu4e manual for details
           mu4e-get-mail-command "offlineimap -c ~/.spacemacs.d/offlineimaprc"
-          mu4e-update-interval nil
-          mu4e-compose-signature-auto-include nil
+          mu4e-update-interval nil ;;number of seconds between the updates. If
+          ;;set to nil, it won’t update at all
+          mu4e-index-cleanup nil      ;; don't do a full cleanup check
+          mu4e-index-lazy-check t     ;; don't consider up-to-date dirs
+          mu4e-compose-complete-addresses t ;; nil to disable
+          mu4e-compose-signature-auto-include t
           mu4e-view-show-images t
-          mu4e-view-show-addresses t))
+          mu4e-view-show-addresses t
+          mu4e-user-mail-address-list '("swaroopjoshi@ieee.org")
+          mu4e-compose-reply-to-address "swaroopjoshi@ieee.org"
+          user-mail-address "swaroopjoshi@ieee.org"
+          user-full-name  "Swaroop Joshi"
+          mu4e-compose-signature "Swaroop"
+          mu4e-headers-fields '((:human-date . 15) ;; or use :date
+                                (:flags      . 6)
+                                (:from-or-to . 22)
+                                (:subject    . nil)) ;; or use :thread-subject
+          ;; mu4e-view-hide-cited '#
+          message-kill-buffer-on-exit t
+          mu4e-compose-dont-reply-to-self t
+          mail-user-agent 'mu4e-user-agent ;; mu4e is the default email program of emacs
+
+          ;; smtp
+          message-send-mail-function 'smtpmail-send-it
+          smtpmail-default-smtp-server "smtp.gmail.com"
+          smtpmail-auth-credentials (expand-file-name "~/.spacemacs.d/authinfo.gpg")
+          smtpmail-smtp-server "smtp.gmail.com"
+          smtpmail-local-domain "gmail.com"
+          smtpmail-smtp-service 465
+          smtpmail-stream-type 'tls
+          mu4e-sent-messages-behavior 'delete
+          )
+    (require 'gnus-dired)
+    ;; make the `gnus-dired-mail-buffers' function also work on
+    ;; message-mode derived modes, such as mu4e-compose-mode
+    (defun gnus-dired-mail-buffers ()
+      "Return a list of active message buffers."
+      (let (buffers)
+        (save-current-buffer
+          (dolist (buffer (buffer-list t))
+	          (set-buffer buffer)
+	          (when (and (derived-mode-p 'message-mode)
+		                   (null message-sent-message-via))
+	            (push (buffer-name buffer) buffers))))
+        (nreverse buffers)))
+
+    (setq gnus-dired-mail-mode 'mu4e-user-agent)
+    (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
 
   ;; Set the proper ditaa path
   ;; See https://www.johndcook.com/blog/2016/06/15/ascii-art-diagrams-in-emacs-org-mode/
