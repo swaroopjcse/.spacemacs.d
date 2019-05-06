@@ -408,7 +408,7 @@ you should place your code here."
           mu4e-trash-folder  "/ieee/Trash"      ;; trashed messages
           mu4e-refile-folder "/archive"    ;; refile
           mu4e-attachment-dir  "~/Downloads"
-          mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout" ;; only on osx - see mu4e manual for details
+          ;; mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout" ;; only on osx - see mu4e manual for details
           mu4e-get-mail-command "offlineimap -c ~/.spacemacs.d/offlineimaprc"
           mu4e-update-interval nil ;;number of seconds between the updates. If
           ;;set to nil, it won’t update at all
@@ -502,8 +502,9 @@ you should place your code here."
 
     (org-babel-do-load-languages
      'org-babel-load-languages '((python . t)
-                                 (ditaa . t)
-                                 (scala . t)))
+                                 (ditaa  . t)
+                                 (java   . t)
+                                 (scala  . t)))
 
     (use-package yankpad
       :ensure t
@@ -519,8 +520,9 @@ you should place your code here."
                                         ; GPG key to use for encryption
 
     ;; https://emacs.stackexchange.com/questions/32225/latex-export-uses-lstlisting-instead-of-minted-why
-    (setq org-export-latex-listings 'listings
+    (setq org-latex-listings 'listings
           org-latex-packages-alist '(("" "listings")))
+
     ;; GPG key to use for encryption
     ;; Either the Key ID or set to nil to use symmetric encryption.
     (setq org-crypt-key nil)
@@ -535,7 +537,7 @@ you should place your code here."
     ;;
     ;; # -*- buffer-auto-save-file-name: nil; -*-
     (setq auto-save-default nil)
-    )
+    ) ;; end with-eval-after-load 'org
 
 
   ;; From https://stackoverflow.com/a/44966680/3259704
