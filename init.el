@@ -34,8 +34,7 @@ values."
      (mu4e :variables
            mu4e-installation-path "/usr/local/Cellar/mu/1.0_1/share/emacs/site-lisp/mu/mu4e/"
            mu4e-enable-mode-line t
-           mu4e-enable-notifications t
-           mu4e-account-alist t)
+           mu4e-enable-notifications t)
      rust
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -442,23 +441,7 @@ you should place your code here."
           smtpmail-smtp-service 465
           smtpmail-stream-type 'tls
           mu4e-sent-messages-behavior 'delete
-          )
-    (require 'gnus-dired)
-    ;; make the `gnus-dired-mail-buffers' function also work on
-    ;; message-mode derived modes, such as mu4e-compose-mode
-    (defun gnus-dired-mail-buffers ()
-      "Return a list of active message buffers."
-      (let (buffers)
-        (save-current-buffer
-          (dolist (buffer (buffer-list t))
-	          (set-buffer buffer)
-	          (when (and (derived-mode-p 'message-mode)
-		                   (null message-sent-message-via))
-	            (push (buffer-name buffer) buffers))))
-        (nreverse buffers)))
-
-    (setq gnus-dired-mail-mode 'mu4e-user-agent)
-    (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
+          ))
 
   ;; Set the proper ditaa path
   ;; See https://www.johndcook.com/blog/2016/06/15/ascii-art-diagrams-in-emacs-org-mode/
