@@ -403,9 +403,9 @@ you should place your code here."
   ;; mu4e configuration
   (with-eval-after-load 'mu4e
     (setq mu4e-maildir "~/.mail"
-          mu4e-sent-folder   "/sent"       ;; folder for sent messages
-          mu4e-drafts-folder "/drafts"     ;; unfinished messages
-          mu4e-trash-folder  "/trash"      ;; trashed messages
+          mu4e-sent-folder   "/ieee/Sent Mail"       ;; folder for sent messages
+          mu4e-drafts-folder "/ieee/Drafts"     ;; unfinished messages
+          mu4e-trash-folder  "/ieee/Trash"      ;; trashed messages
           mu4e-refile-folder "/archive"    ;; refile
           mu4e-attachment-dir  "~/Downloads"
           mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout" ;; only on osx - see mu4e manual for details
@@ -434,8 +434,9 @@ you should place your code here."
 
           ;; smtp
           message-send-mail-function 'smtpmail-send-it
+          ;; smtpmail-auth-credentials (expand-file-name "~/.spacemacs.d/authinfo.gpg")
+          ;; simply put credentials in .authinfo.gpg instead
           smtpmail-default-smtp-server "smtp.gmail.com"
-          smtpmail-auth-credentials (expand-file-name "~/.spacemacs.d/authinfo.gpg")
           smtpmail-smtp-server "smtp.gmail.com"
           smtpmail-local-domain "gmail.com"
           smtpmail-smtp-service 465

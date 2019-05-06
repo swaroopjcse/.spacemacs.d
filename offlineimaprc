@@ -1,7 +1,7 @@
 [general]
 accounts = ieee
 maxsyncaccounts = 1
-pythonfile = ~/.spacemacs.d/offlineimap.py
+# pythonfile = ~/.spacemacs.d/offlineimap.py
 
 [Account ieee]
 localrepository = ieee-local
@@ -26,7 +26,7 @@ oauth2_refresh_token = 1/pedVQiwEt5XjqAteCz5FNPnURmFaX1Nbaqq76Bi4CIw
 realdelete = yes
 maxconnections = 3
 sslcacertfile = /usr/local/etc/openssl/cert.pem
-# folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail', '[Gmail]/Drafts', '[Gmail]/Important', '[Gmail]/Sent Mail', '[Gmail]/Spam', '[Gmail]/Starred', '[Gmail]/Trash']
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail', '[Gmail]/Important', '[Gmail]/Spam', '[Gmail]/Starred']
 # folderfilter = lambda folder: folder not in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent Mail']
 # remove Gmail prefix on IMAP folders
 nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else f
