@@ -506,6 +506,20 @@ you should place your code here."
                                  (java   . t)
                                  (scala  . t)))
 
+    ;; Saving org file can directly produce pdf. Use this function to toggle this feature.
+    ;; https://stackoverflow.com/questions/31834002/how-to-export-org-file-to-html-file-when-save
+    (defun toggle-pdf-export-on-save ()
+      "Enable or disable export PDF when saving current buffer."
+      (interactive)
+      (when (not (eq major-mode 'org-mode))
+        (error "Not an org-mode file!"))
+      (if (memq 'org-latex-export-to-pdf after-save-hook)
+          (progn (remove-hook 'after-save-hook 'org-latex-export-to-pdf t)
+                 (message "Disabled org pdf export on save"))
+        (add-hook 'after-save-hook 'org-latex-export-to-pdf nil t)
+        (set-buffer-modified-p t)
+        (message "Enabled org pdf export on save")))
+
     (use-package yankpad
       :ensure t
       :defer 10
