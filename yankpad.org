@@ -30,8 +30,11 @@ Enter your text here.
 ** Beamer pause                                            :orgmode:beamer:p:
    #+BEAMER: \pause
 ** Insert src                                                     :orgmode:s:
-   #+BEGIN_SRC $1
-     $2
+   #+CAPTION: $1
+   #+LABEL: $2
+   #+ATTR_LATEX: :options frame=none
+   #+BEGIN_SRC $3
+     $4
    #+END_SRC
 
 * latex
