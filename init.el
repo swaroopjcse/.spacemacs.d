@@ -1,11 +1,12 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-
+;; * dotspacemacs/layers
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
 values."
+;; ** setq-default
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -29,6 +30,7 @@ values."
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
+;; *** dotspacemacs-configuration-layers
    dotspacemacs-configuration-layers
    '(
      (mu4e :variables
@@ -104,15 +106,24 @@ values."
             c-c++-enable-clang-support t)
      nlinum
      )
+;; *** additional non-layer packages
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(treemacs treemacs-projectile yankpad define-word plantuml-mode)
+   dotspacemacs-additional-packages '(treemacs
+                                      treemacs-projectile
+                                      yankpad
+                                      define-word
+                                      plantuml-mode
+                                      outshine)
+;; *** frozen packages
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
+;; *** excluded packages
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(org-projectile company)
+;; *** behavior when installing - used only
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -122,6 +133,7 @@ values."
    ;; Spacemacs and never uninstall them. (default is `used-only')
    dotspacemacs-install-packages 'used-only))
 
+;; ** /init() - called before the layer
 (defun dotspacemacs/init ()
   "Initialization function.
 This function is called at the very startup of Spacemacs initialization
@@ -346,6 +358,7 @@ values."
    dotspacemacs-whitespace-cleanup nil
    ))
 
+;; ** User-init, called after init() but before layers
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration
@@ -362,6 +375,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq default-tab-width 2)
   )
 
+;; ** user-config() - called after layers configuration
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -370,20 +384,24 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+;; *** flycheck
   ;; From http://spacemacs.org/layers/+lang/scala/README.html
   (setq flycheck-scalastyle-jar
         "/usr/local/Cellar/scalastyle/0.8.0/libexec/scalastyle_2.11-0.8.0-batch.jar")
   (setq flycheck-scalastylerc
         "/usr/local/etc/scalastyle_config.xml")
 
+;; *** scimax
   ;; Importing some customizations from scimax
   ;; https://github.com/jkitchin/scimax
   ;; (setq scimax-dir "/Users/swaroop/Downloads/scimax")
   ;; (add-to-list 'load-path "/Users/swaroop/Downloads/scimax")
 
+;; *** mode-line customization
   (display-time-mode t)
   (display-battery-mode t)
 
+;; *** for java and eclim
   (setq exec-path (append exec-path '("/usr/local/bin")))
 
   (setq eclim-eclipse-dirs "/Applications/Eclipse.app//Contents/MacOS/eclipse"
@@ -392,18 +410,20 @@ you should place your code here."
   ;; (add-hook 'java-mode-hook 'scala/configure-ensime)
   ;; (add-hook 'java-mode-hook 'scala/maybe-start-ensime)
 
-  ;; treemacs related variables
+;; *** treemacs related customization
   (setq treemacs-use-follow-mode t
         treemacs-use-filewatch-mode t)
 
+;; *** plantuml
   (setq plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
 
-;;; this file contains my custom keybindings
+;; *** my custom keybindings
   (load-file "~/.spacemacs.d/custom.el")
 
+;; *** doc-view
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
-  ;; mu4e configuration
+;; *** mu4e configuration
   (with-eval-after-load 'mu4e
     (setq mu4e-maildir "~/.mail"
           mu4e-sent-folder   "/ieee/Sent Mail"       ;; folder for sent messages
@@ -447,6 +467,7 @@ you should place your code here."
           mu4e-sent-messages-behavior 'delete
           ))
 
+;; *** org customization
   ;; Set the proper ditaa path
   ;; See https://www.johndcook.com/blog/2016/06/15/ascii-art-diagrams-in-emacs-org-mode/
   ;; (setq org-ditaa-jar-path "/usr/local/Cellar/ditaa/0.10/libexec/ditaa0_10.jar")
@@ -576,7 +597,6 @@ you should place your code here."
     (setq auto-save-default nil)
     ) ;; end with-eval-after-load 'org
 
-
   ;; From https://stackoverflow.com/a/44966680/3259704
   ;; (setq org-latex-image-default-width "")
 
@@ -608,6 +628,8 @@ you should place your code here."
   ;; (global-set-key (kbd "C-i") 'yas-expand)
   )
 
+
+;; ** generated stuff - not to be edited
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
