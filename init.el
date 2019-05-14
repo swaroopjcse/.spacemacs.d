@@ -33,8 +33,11 @@ values."
 ;; *** dotspacemacs-configuration-layers
    dotspacemacs-configuration-layers
    '(
+     ;; I have linked my mu4e directory to a soft link in spacemacs.d
+       ;; /usr/local/Cellar/mu/1.2.0/share/emacs/site-lisp/mu/mu4e/
+       ;; Make sure to update it every time mu is updated (via brew)
      (mu4e :variables
-           mu4e-installation-path "/usr/local/Cellar/mu/1.0_1/share/emacs/site-lisp/mu/mu4e/"
+           mu4e-installation-path "~/.spacemacs.d/mu4e"
            mu4e-enable-mode-line t
            mu4e-enable-notifications t)
      rust
