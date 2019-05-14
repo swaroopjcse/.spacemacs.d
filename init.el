@@ -407,8 +407,9 @@ you should place your code here."
 ;; *** for java and eclim
   (setq exec-path (append exec-path '("/usr/local/bin")))
 
-  (setq eclim-eclipse-dirs "/Applications/Eclipse.app//Contents/MacOS/eclipse"
-        eclim-executable "/Applications/Eclipse.app//Contents/Eclipse/plugins/org.eclim_2.8.0/bin/eclim")
+  (setq eclim-eclipse-dirs "/Applications/Eclipse.app/Contents/MacOS/eclipse"
+        eclim-executable "/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclim_2.8.0/bin/eclim"
+        eclimd-default-workspace "~/eclipse-workspace/")
 
   ;; (add-hook 'java-mode-hook 'scala/configure-ensime)
   ;; (add-hook 'java-mode-hook 'scala/maybe-start-ensime)
