@@ -493,7 +493,7 @@ you should place your code here."
             ("k" "Tickler" entry
              (file+headline "~/org/tickler.org" "Tickler")
              "* %i%? \n %^t")
-            ("q" "Quote" entry
+            ("o" "Quote" entry
              (file+headline "~/org/quotes.org" "Quote")
              "* %i%? %^g \n #+BEGIN_VERSE \n #+END_VERSE  \n %u")
             ("j" "Journal" entry
