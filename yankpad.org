@@ -4,14 +4,14 @@
    #+LABEL: fig:
    #+ATTR_LATEX: :width .7\textwidth :placement [!h]
 ** My letter                                              :orgmode:letter:l:
-#+SETUPFILE:osulet.org
+#+SETUPFILE:~/git/spacemacs.d/templates/letter.org
 
 #+LATEX: \thispagestyle{firststyle}
 #+LATEX: \vspace*{1cm}
 
-#+LATEX_HEADER: \def\toname{Teena Dixon}%
-#+LATEX_HEADER: \def\toaddr{6333 Kendall Ridge Blvd.\\Dublin, Ohio 43016}
-#+LATEX_HEADER: \def\salutations{Dear CIO Scholarship Chair:}%
+#+LATEX_HEADER: \def\toname{$1}%
+#+LATEX_HEADER: \def\toaddr{$2}
+#+LATEX_HEADER: \def\salutations{$3:}%
 #+LATEX_HEADER: \def\closing{Sincerely,}%
 
 #+LATEX: \today\par
@@ -19,9 +19,9 @@
 #+LATEX: \toaddr\par\bigskip
 #+LATEX: \salutations\par
 
-#+LATEX: \lipsum[1-5]
+# #+LATEX: \lipsum[1-5]
 
-Enter your text here.
+$4
 
 
 #+LATEX: \closing \par \bigskip \bigskip
