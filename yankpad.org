@@ -41,6 +41,9 @@ $4
 ** Report                                         :orgmode:orglevel:report:r:
 #+SETUPFILE:~/git/spacemacs.d/templates/report.org
 
+# Add my macros
+#+INCLUDE: "~/git/spacemacs.d/templates/macros.org"
+
 #+TITLE:$1
 #+AUTHOR: Swaroop Joshi
 #+DATE: \today
@@ -50,17 +53,38 @@ $4
 #+KEYWORDS:
 #+SUBTITLE:
 
+$2
+# #+latex: \thispagestyle{plain} 
+
+# #+latex: \begin{flushleft}\Large \bf \thetitle  \end{flushleft}
+# #+latex: 	\vspace{1 mm}   
+# #+latex: \theauthor \\
+# /{{{bits}}}/ \\
+# \texttt{ {{{email}}} } \\
+
+# #+latex: \hrule
+
 #+latex: \begin{abstract}
 \lipsum[3]
 #+latex: \end{abstract}
 
 # * Introduction
-#+latex: \lipsum[1-2]
+   :PROPERTIES:
+   :CUSTOM_ID: sec.intro
+   :END:
+   #+latex: \lipsum[1-2]
 
-An example of a citation cite:fincher_cambridge_2019.
+   An example of a citation cite:fincher_cambridge_2019.
+
+   And this is a section reference  [[ref:sec.bg]].
 
 # * Background
-  
+  :PROPERTIES:
+  :CUSTOM_ID: sec.bg
+  :END:
+
+  #+latex: \lipsum[4-5]
+
 
 #+LATEX: \bibliographystyle{apalike}
 #+LATEX: \bibliography{../library}
