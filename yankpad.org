@@ -3,6 +3,16 @@
    #+CAPTION: 
    #+LABEL: fig:
    #+ATTR_LATEX: :width .7\textwidth :placement [!h]
+** Beamer pause                                            :orgmode:beamer:p:
+   #+BEAMER: \pause
+** Insert src                                                     :orgmode:s:
+   #+CAPTION: $1
+   #+LABEL: $2
+   #+ATTR_LATEX: :options frame=none
+   #+BEGIN_SRC $3
+     $4
+   #+END_SRC
+
 ** My letter                                              :orgmode:letter:l:
 #+SETUPFILE:~/git/spacemacs.d/templates/letter.org
 
@@ -27,15 +37,36 @@ $4
 #+LATEX: \closing \par \bigskip \bigskip
 #+LATEX: \fromname \ifthenelse{\isundefined{\fromdeg}}{}{, \fromdeg} \par
 #+LATEX: {\small \fromaffiliation}\label{LastPage}
-** Beamer pause                                            :orgmode:beamer:p:
-   #+BEAMER: \pause
-** Insert src                                                     :orgmode:s:
-   #+CAPTION: $1
-   #+LABEL: $2
-   #+ATTR_LATEX: :options frame=none
-   #+BEGIN_SRC $3
-     $4
-   #+END_SRC
+
+** Report                                         :orgmode:orglevel:report:r:
+#+SETUPFILE:~/git/spacemacs.d/templates/report.org
+
+#+TITLE:$1
+#+AUTHOR: Swaroop Joshi
+#+DATE: \today
+
+#+LATEX_HEADER_EXTRA:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+
+#+latex: \begin{abstract}
+\lipsum[3]
+#+latex: \end{abstract}
+
+# * Introduction
+#+latex: \lipsum[1-2]
+
+An example of a citation cite:fincher_cambridge_2019.
+
+# * Background
+  
+
+#+LATEX: \bibliographystyle{apalike}
+#+LATEX: \bibliography{../library}
+
+
+
 
 * latex
 * java

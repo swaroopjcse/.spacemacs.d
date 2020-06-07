@@ -1,0 +1,3 @@
+#+MACRO: osu The Ohio State University
+#+MACRO: uofu University of Utah
+#+MACRO: bits Birla Institute of Technology and Science (BITS) Pilani

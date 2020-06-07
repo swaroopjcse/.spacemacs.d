@@ -1,0 +1,18 @@
+#+latex_class: article
+#+latex_class_options: [11pt,a4paper]
+#+latex_header: \usepackage[margin=1in]{geometry}
+#+latex_header:\usepackage{graphicx}
+#+latex_header: \setlength{\parindent}{0pt}% Remove paragraph indent
+#+latex_header: \setlength{\parskip}{10pt}% Vertical distance between two paragraphs
+#+latex_header: \usepackage{fontawesome5}
+#+latex_header: \usepackage{mathpazo}
+
+#+latex_header: \usepackage{hyperref}
+
+#+latex_header: \usepackage{lipsum}
+
+#+latex_header: \usepackage[sort]{natbib}
+
+#+STARTUP: indent showeverything logdrawer lognoteclock-out
+#+OPTIONS: toc:nil num:t H:3 ^:{} tags:nil todo:nil
+
