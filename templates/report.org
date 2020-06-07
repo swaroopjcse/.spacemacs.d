@@ -30,11 +30,11 @@
 #+latex_header: \usepackage{lastpage}
 #+latex_header: \renewcommand{\headrulewidth}{0.3pt}
 #+latex_header: \renewcommand{\footrulewidth}{0.0pt} 
-#+latex_header: \lhead{\footnotesize \theauthor}
+#+latex_header: \lhead{\footnotesize \emph{\thetitle}}
 #+latex_header: \chead{}
-#+latex_header: \rhead{\footnotesize \emph{\thetitle}}
+#+latex_header: \rhead{\footnotesize \thepage}
 #+latex_header: \lfoot{}
-#+latex_header: \cfoot{\small \thepage/\pageref*{LastPage}}
+#+latex_header: \cfoot{} %\small \thepage/\pageref*{LastPage}}
 #+latex_header: \rfoot{}
 
 #+latex_header: \renewcommand\maketitle{}
