@@ -572,6 +572,8 @@ you should place your code here."
     (setq reftex-default-bibliography '("~/git/papers/library.bib"))
     (setq bibtex-completion-bibliography "~/git/papers/library.bib")
     (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+    (setq org-latex-prefer-user-labels t) ;; so I can use CUSTOM_ID to reference
+                                          ;; sections, etc.
 
 ;; ***** misc
     (use-package yankpad
