@@ -19,6 +19,30 @@
 
 #+latex_header: \usepackage[sort]{natbib}
 
+#+latex_header: \usepackage{titling}
+#+latex_header: \setlength{\droptitle}{-1.25cm}
+
+
+#+latex_header: \linespread{1.05}
+
+#+latex_header: \usepackage{fancyhdr}
+#+latex_header: \pagestyle{fancy}
+#+latex_header: \usepackage{lastpage}
+#+latex_header: \renewcommand{\headrulewidth}{0.3pt}
+#+latex_header: \renewcommand{\footrulewidth}{0.0pt} 
+#+latex_header: \lhead{\footnotesize \theauthor}
+#+latex_header: \chead{}
+#+latex_header: \rhead{\footnotesize \emph{\thetitle}}
+#+latex_header: \lfoot{}
+#+latex_header: \cfoot{\small \thepage/\pageref*{LastPage}}
+#+latex_header: \rfoot{}
+
+#+latex_header: \renewcommand\maketitle{}
+
+
+
 #+STARTUP: indent showeverything logdrawer lognoteclock-out
 #+OPTIONS: toc:nil num:t H:3 ^:{} tags:nil todo:nil
+
+
 
