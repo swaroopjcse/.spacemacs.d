@@ -6,6 +6,12 @@
 #+latex_header: \setlength{\parskip}{10pt}% Vertical distance between two paragraphs
 #+latex_header: \usepackage{fontawesome5}
 #+latex_header: \usepackage{mathpazo}
+#+latex_header: \newcommand*{\authorfont}{\fontfamily{phv}\selectfont}
+
+#+latex_header: \usepackage{abstract}
+#+latex_header: \renewcommand{\abstractname}{}    % clear the title
+#+latex_header: \renewcommand{\absnamepos}{empty} % originally center
+#+latex_header: \newcommand{\blankline}{\quad\pagebreak[2]}
 
 #+latex_header: \usepackage{hyperref}
 
