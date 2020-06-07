@@ -58,9 +58,10 @@ $2
 
 # #+latex: \begin{flushleft}\Large \bf \thetitle  \end{flushleft}
 # #+latex: 	\vspace{1 mm}   
-# #+latex: \theauthor \\
-# /{{{bits}}}/ \\
-# \texttt{ {{{email}}} } \\
+# #+latex: \theauthor
+
+# /{{{bits}}}/ \\\\
+# \texttt{ {{{email}}} } \\\\
 
 # #+latex: \hrule
 
