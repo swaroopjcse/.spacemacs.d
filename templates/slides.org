@@ -1,0 +1,15 @@
+#+OPTIONS: H:2 toc:nil num:nil
+# #+OPTIONS: ^:nil
+#+LATEX_CLASS: beamer
+# #+LATEX_CLASS_OPTIONS: [notes, presentation]
+#+LATEX_CLASS_OPTIONS: [presentation]
+# #+LATEX_CLASS_OPTIONS: [notes=only]
+#+BEAMER_THEME: metropolis
+# #+BEAMER_THEME: Madrid
+# #+BEAMER_COLOR_THEME: beaver
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+#+STARTUP: beamer
+#+BEAMER_FRAME_LEVEL: 3
+#+LATEX_HEADER: \usepackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+#+EXCLUDE_TAGS: hide

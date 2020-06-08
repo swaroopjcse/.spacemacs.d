@@ -92,7 +92,45 @@ $2
 
 
 
+** Beamer slides                                           :orgmode:beamer:b:
+# -*- mode: beamer-mode -*-
 
+#+SETUPFILE:~/git/spacemacs.d/templates/slides.org
+
+# Add my macros
+#+INCLUDE: "~/git/spacemacs.d/templates/macros.org"
+
+#+title: $1
+#+subtitle: $2
+#+author: Swaroop Joshi
+#+date: \today
+
+$3
+# * Part 
+# ** Two column slide
+# *** First                                                          :B_column:
+    :PROPERTIES:
+    :BEAMER_env: column
+    :BEAMER_col: 0.45
+    :END:
+     This is a double column slide
+# *** Second                                                         :B_column:
+    :PROPERTIES:
+    :BEAMER_env: column
+    :BEAMER_col: 0.45
+    :END:
+    | a | b | a && b |
+    |---+---+--------|
+    | T | T | T      |
+    | T | F | F      |
+    | F | T | F      |
+    | F | F | F      |
+# ** Slide heading
+   + List item1
+     + List subitem1
+     + List subitem2
+   + List item2
+     + List subitem3
 * latex
 * java
 * python
