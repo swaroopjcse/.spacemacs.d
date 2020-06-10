@@ -432,8 +432,7 @@ you should place your code here."
 
     (setq org-agenda-files '("~/org/inbox.org"
                              "~/org/gtd.org"
-                             "~/org/tickler.org"
-                             "~/git/oup-android-book/androidbook.org"))
+                             "~/org/tickler.org"))
 
     (setq org-capture-templates
           '(("t" "Todo [inbox]" entry
@@ -444,10 +443,7 @@ you should place your code here."
              "* %i%? \n %^t")
             ("o" "Quote" entry
              (file+headline "~/org/quotes.org" "Quote")
-             "* %i%? %^g \n #+BEGIN_VERSE \n #+END_VERSE  \n %u")
-            ("j" "Journal" entry
-             (file+datetree "~/org/journal.org")
-             "* %?\nEntered on %U\n  %i\n  %a")))
+             "* %i%? %^g \n #+begin_verse \n #+end_verse  \n %u")))
 
     (setq org-refile-targets '(("~/org/gtd.org" :maxlevel . 2)
                                ("~/org/someday.org" :level . 1)
@@ -516,16 +512,18 @@ you should place your code here."
 					                              (strike-through . "\\sout{%s}")
 					                              (underline . "\\uline{%s}")
 					                              (verbatim . protectedtexttt)))
+;; **** outshine hooks
+    (add-hook 'emacs-lisp-mode-hook 'outshine-mode)
+    (add-hook 'latex-mode-hook 'outshine-mode)
 
-
-;; ****** org-ref setup
+;; **** org-ref setup
     (setq reftex-default-bibliography '("~/git/papers/library.bib"))
     (setq bibtex-completion-bibliography "~/git/papers/library.bib")
     (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
     (setq org-latex-prefer-user-labels t) ;; so I can use CUSTOM_ID to reference
                                           ;; sections, etc.
 
-;; ****** org-latex classes
+;; **** org-latex classes
     (add-to-list 'org-latex-classes
 	               '("IEEEtran"
 	                 "\\documentclass{IEEEtran}
@@ -537,29 +535,31 @@ you should place your code here."
 	                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 	                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
 	                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-    
-;; ***** misc
+
+;; *** misc
+;; **** yankpad 
     (use-package yankpad
       :ensure t
       :defer 10
       :init
       (setq yankpad-file "~/.spacemacs.d/yankpad.org"))
 
-    ;; From norang https://duckduckgo.com/l/?kh=-1&uddg=http%3A%2F%2Fdoc.norang.ca%2Forg%2Dmode.html
-    (require 'org-crypt)
-                                        ; Encrypt all entries before saving
-    (org-crypt-use-before-save-magic)
-    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-                                        ; GPG key to use for encryption
-
+;; **** listings
     ;; https://emacs.stackexchange.com/questions/32225/latex-export-uses-lstlisting-instead-of-minted-why
     (setq org-latex-listings 'listings
           org-latex-packages-alist '(("" "listings")))
 
+
+;; **** org-crypt
+    ;; From norang https://duckduckgo.com/l/?kh=-1&uddg=http%3A%2F%2Fdoc.norang.ca%2Forg%2Dmode.html
+    (require 'org-crypt)
+                                        ; Encrypt all entries before saving
+    (org-crypt-use-before-save-magic)
     ;; GPG key to use for encryption
     ;; Either the Key ID or set to nil to use symmetric encryption.
     (setq org-crypt-key nil)
-    ;; (setq org-crypt-key "7B8810EF0F59C496C78F8EF15C07A55E01FCA00C")
+
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 
     ;; Auto-saving does not cooperate with org-crypt.el: so you need
     ;; to turn it off if you plan to use org-crypt.el quite often.
@@ -575,6 +575,7 @@ you should place your code here."
   ;; From https://stackoverflow.com/a/44966680/3259704
   ;; (setq org-latex-image-default-width "")
 
+;; **** skim setup
   ;; Syntex with skim from https://mssun.me/blog/spacemacs-and-latex.html
   (cond
    ((string-equal system-type "darwin")
