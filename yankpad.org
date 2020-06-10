@@ -69,7 +69,7 @@ $2
 \lipsum[3]
 #+latex: \end{abstract}
 
-# * Introduction
+\* Introduction
    :PROPERTIES:
    :CUSTOM_ID: sec.intro
    :END:
@@ -79,7 +79,7 @@ $2
 
    And this is a section reference  [[ref:sec.bg]].
 
-# * Background
+\* Background
   :PROPERTIES:
   :CUSTOM_ID: sec.bg
   :END:
@@ -106,15 +106,15 @@ $2
 #+date: \today
 
 $3
-# * Part 
-# ** Two column slide
-# *** First                                                          :B_column:
+\* Part 
+\** Two column slide
+\*** First                                                          :B_column:
     :PROPERTIES:
     :BEAMER_env: column
     :BEAMER_col: 0.45
     :END:
      This is a double column slide
-# *** Second                                                         :B_column:
+\*** Second                                                         :B_column:
     :PROPERTIES:
     :BEAMER_env: column
     :BEAMER_col: 0.45
@@ -125,12 +125,16 @@ $3
     | T | F | F      |
     | F | T | F      |
     | F | F | F      |
-# ** Slide heading
+\** Slide heading
    + List item1
      + List subitem1
      + List subitem2
    + List item2
      + List subitem3
+
+\** References
+#+LATEX: \bibliographystyle{apalike}
+#+LATEX: \bibliography{../library}
 * latex
 * java
 * python
