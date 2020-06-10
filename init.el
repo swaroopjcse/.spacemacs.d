@@ -393,12 +393,6 @@ you should place your code here."
   (setq flycheck-scalastylerc
         "/usr/local/etc/scalastyle_config.xml")
 
-;; *** scimax
-  ;; Importing some customizations from scimax
-  ;; https://github.com/jkitchin/scimax
-  ;; (setq scimax-dir "/Users/swaroop/Downloads/scimax")
-  ;; (add-to-list 'load-path "/Users/swaroop/Downloads/scimax")
-
 ;; *** mode-line customization
   (display-time-mode t)
   (display-battery-mode t)
@@ -425,50 +419,6 @@ you should place your code here."
 
 ;; *** doc-view
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-
-;; *** mu4e configuration
-  (with-eval-after-load 'mu4e
-    (setq mu4e-maildir "~/.mail"
-          mu4e-sent-folder   "/ieee/Sent Mail"       ;; folder for sent messages
-          mu4e-drafts-folder "/ieee/Drafts"     ;; unfinished messages
-          mu4e-trash-folder  "/ieee/Trash"      ;; trashed messages
-          mu4e-refile-folder "/archive"    ;; refile
-          mu4e-attachment-dir  "~/Downloads"
-          ;; mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout" ;; only on osx - see mu4e manual for details
-          mu4e-get-mail-command "offlineimap -c ~/.spacemacs.d/offlineimaprc"
-          mu4e-update-interval nil ;;number of seconds between the updates. If
-          ;;set to nil, it won’t update at all
-          mu4e-index-cleanup nil      ;; don't do a full cleanup check
-          mu4e-index-lazy-check t     ;; don't consider up-to-date dirs
-          mu4e-compose-complete-addresses t ;; nil to disable
-          mu4e-compose-signature-auto-include t
-          mu4e-view-show-images t
-          mu4e-view-show-addresses t
-          mu4e-user-mail-address-list '("swaroopjoshi@ieee.org")
-          mu4e-compose-reply-to-address "swaroopjoshi@ieee.org"
-          user-mail-address "swaroopjoshi@ieee.org"
-          user-full-name  "Swaroop Joshi"
-          mu4e-compose-signature "Swaroop"
-          mu4e-headers-fields '((:human-date . 15) ;; or use :date
-                                (:flags      . 6)
-                                (:from-or-to . 22)
-                                (:subject    . nil)) ;; or use :thread-subject
-          ;; mu4e-view-hide-cited '#
-          message-kill-buffer-on-exit t
-          mu4e-compose-dont-reply-to-self t
-          mail-user-agent 'mu4e-user-agent ;; mu4e is the default email program of emacs
-
-          ;; smtp
-          message-send-mail-function 'smtpmail-send-it
-          ;; smtpmail-auth-credentials (expand-file-name "~/.spacemacs.d/authinfo.gpg")
-          ;; simply put credentials in .authinfo.gpg instead
-          smtpmail-default-smtp-server "smtp.gmail.com"
-          smtpmail-smtp-server "smtp.gmail.com"
-          smtpmail-local-domain "gmail.com"
-          smtpmail-smtp-service 465
-          smtpmail-stream-type 'tls
-          mu4e-sent-messages-behavior 'delete
-          ))
 
 ;; *** org customization
   ;; Set the proper ditaa path
