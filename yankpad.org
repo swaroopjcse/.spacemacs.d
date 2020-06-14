@@ -132,7 +132,11 @@ $3
    + List item2
      + List subitem3
 
+\* Reference                                                          :ignore:
 \** References
+   :PROPERTIES:
+   :BEAMER_OPT: allowframebreaks
+   :END:
 #+LATEX: \bibliographystyle{apalike}
 #+LATEX: \bibliography{../library}
 * latex
