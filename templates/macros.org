@@ -3,3 +3,5 @@
 #+MACRO: bits Birla Institute of Technology and Science (BITS) Pilani
 
 #+MACRO: email swaroopjoshi@ieee.org
+
+#+macro: cse Computer Science and Engineering
