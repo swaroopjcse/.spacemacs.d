@@ -523,6 +523,11 @@ you should place your code here."
     (setq org-latex-prefer-user-labels t) ;; so I can use CUSTOM_ID to reference
                                           ;; sections, etc.
 
+;; **** ignore headlines
+    ;; ignores the heading with the tag :ignore: but displays its contents
+    ;; very useful for things like references esp. in beamer
+    (require 'ox-extra)
+    (ox-extras-activate '(ignore-headlines))
 ;; **** org-latex classes
     ;; (add-to-list 'org-latex-classes
 	               ;; '("IEEEtran"
