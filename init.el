@@ -524,17 +524,17 @@ you should place your code here."
                                           ;; sections, etc.
 
 ;; **** org-latex classes
-    (add-to-list 'org-latex-classes
-	               '("IEEEtran"
-	                 "\\documentclass{IEEEtran}
- [NO-DEFAULT-PACKAGES]
- [PACKAGES]
- [EXTRA]"
-	                 ("\\section{%s}" . "\\section*{%s}")
-	                 ("\\subsection{%s}" . "\\subsection*a{%s}")
-	                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-	                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-	                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    ;; (add-to-list 'org-latex-classes
+	               ;; '("IEEEtran"
+	                 ;; "\\documentclass{IEEEtran}
+ ;; [NO-DEFAULT-PACKAGES]
+ ;; [PACKAGES]
+ ;; [EXTRA]"
+	                 ;; ("\\section{%s}" . "\\section*{%s}")
+	                 ;; ("\\subsection{%s}" . "\\subsection*a{%s}")
+	                 ;; ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+	                 ;; ("\\paragraph{%s}" . "\\paragraph*{%s}")
+	                 ;; ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 ;; *** misc
 ;; **** yankpad 
