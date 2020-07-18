@@ -17,7 +17,7 @@
 
 #+latex_header: \usepackage{lipsum}
 
-#+latex_header: \usepackage[sort]{natbib}
+#+latex_header: \usepackage[]{natbib}
 
 #+latex_header: \usepackage{titling}
 #+latex_header: \setlength{\droptitle}{-1.25cm}
