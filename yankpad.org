@@ -8,7 +8,7 @@
 ** Insert src                                                     :orgmode:s:
    #+CAPTION: $1
    #+LABEL: $2
-   #+ATTR_LATEX: :options frame=none
+   #+ATTR_LATEX: :options frame=single, frameround=tttt, numbers=left
    #+BEGIN_SRC $3
      $4
    #+END_SRC
